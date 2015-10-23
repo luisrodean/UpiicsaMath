@@ -25,9 +25,9 @@ public class FragmentAviso extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_avisos, container, false);
-        user = (EditText) vista.findViewById(R.id.txtuser);
-        pass = (EditText) vista.findViewById(R.id.txtpass);
-        insert = (Button) vista.findViewById(R.id.btnacep);
+        user = (EditText) vista.findViewById(R.id.txt_login_usuario);
+        pass = (EditText) vista.findViewById(R.id.txt_login_password);
+        insert = (Button) vista.findViewById(R.id.btn_loging_acceder);
         return vista;
     }
 

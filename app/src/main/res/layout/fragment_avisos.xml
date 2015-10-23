@@ -11,31 +11,8 @@
         android:layout_height="match_parent">
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="Usuario" />
+            android:text="Hola soy Avisos" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:ems="10"
-            android:id="@+id/txtuser" />
-
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="Usuario" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/txtpass" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/btnacep" />
 
     </LinearLayout>
 
