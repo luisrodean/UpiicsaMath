@@ -73,7 +73,7 @@
     <string name="txt_login_usuario">Usuario</string>
     <string name="txt_login_password">Contraseña</string>
     <string name="btn_loging_acceder">Acceder</string>
-    <string name="error_invalid_usuario">El usuario es invalida</string>
+    <string name="error_invalid_usuario">El usuario es invalido</string>
     <string name="error_invalid_password">La contraseña es invalida</string>
     <string name="error_incorrect_password">La contraseña es incorrecta</string>
     <string name="error_field_required">Campo requerio</string>
