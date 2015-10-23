@@ -37,6 +37,8 @@
                 <EditText android:id="@+id/txt_login_password" android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:hint="@string/txt_login_password"
                     android:imeOptions="actionUnspecified" android:inputType="textPassword"
+                    android:drawableLeft="@android:drawable/ic_secure"
+                    android:padding="6dp"
                     android:maxLines="1" android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>

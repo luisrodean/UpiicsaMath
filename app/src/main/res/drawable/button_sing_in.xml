@@ -5,13 +5,13 @@
             <item>
                 <shape android:shape="rectangle">
                     <solid android:color="@color/button_sing_in_shadow" />
-                    <corners android:radius="2dp" />
+                    <corners android:radius="10dp" />
                 </shape>
             </item>
             <item android:bottom="1.5dp">
                 <shape android:shape="rectangle">
                     <solid android:color="@color/button_sing_in_shadow_press" />
-                    <corners android:radius="2dp" />
+                    <corners android:radius="10dp" />
                     <padding android:left="-10dp" android:right="-10dp" />
                 </shape>
             </item>
@@ -25,13 +25,13 @@
             <item>
                 <shape android:shape="rectangle">
                     <solid android:color="@color/button_sing_in_shadow" />
-                    <corners android:radius="2dp" />
+                    <corners android:radius="10dp" />
                 </shape>
             </item>
             <item android:bottom="1.5dp">
                 <shape android:shape="rectangle">
                     <solid android:color="@color/button_sing_in_shadow_enabled" />
-                    <corners android:radius="2dp" />
+                    <corners android:radius="10dp" />
                     <padding android:left="-10dp" android:right="-10dp" />
                 </shape>
             </item>
