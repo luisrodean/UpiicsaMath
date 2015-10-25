@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.belu.upiicsamath.ui.fragment.FragmentLoging">
+
+    <!-- Login progress -->
+    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" android:visibility="gone" />
+
+    <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical">
+
+        <LinearLayout android:id="@+id/upiicsa_login_form" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:foregroundGravity="center_vertical">
+
+            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText android:id="@+id/txt_login_usuario" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/txt_login_usuario"
+                    android:inputType="textNoSuggestions" android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText android:id="@+id/txt_login_password" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/txt_login_password"
+                    android:imeOptions="actionUnspecified" android:inputType="textPassword"
+                    android:drawableLeft="@android:drawable/ic_secure"
+                    android:padding="6dp"
+                    android:maxLines="1" android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button android:id="@+id/btn_loging_acceder" style="@style/Widget.Button.Standar"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:text="@string/btn_loging_acceder"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
