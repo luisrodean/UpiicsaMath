@@ -23,8 +23,8 @@
             android:id="@+id/container_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.belu.upiicsamath.FragmentHorario"
-            class="com.belu.upiicsamath.FragmentHorario"
+            android:name="com.belu.upiicsamath.ui.fragment.FragmentHorario"
+            class="com.belu.upiicsamath.ui.fragment.FragmentHorario"
             tools:layout="@layout/fragment_horaio" />
 
     </LinearLayout>

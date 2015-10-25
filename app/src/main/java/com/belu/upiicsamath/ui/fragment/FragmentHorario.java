@@ -1,10 +1,12 @@
-package com.belu.upiicsamath;
+package com.belu.upiicsamath.ui.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.belu.upiicsamath.R;
 
 public class FragmentHorario extends Fragment {
 

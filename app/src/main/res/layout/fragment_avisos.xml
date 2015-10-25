@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:id="@+id/fragment_calendar"
     android:background="@android:color/background_light"
-    tools:context="com.belu.upiicsamath.FragmentAviso">
+    tools:context="com.belu.upiicsamath.ui.fragment.FragmentAviso">
 
     <LinearLayout
         android:orientation="vertical"

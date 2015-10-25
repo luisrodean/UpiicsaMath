@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:id="@+id/fragment_calendar"
     android:background="@android:color/background_light"
-    tools:context="com.belu.upiicsamath.FragmentPagina">
+    tools:context="com.belu.upiicsamath.ui.fragment.FragmentPagina">
 
     <WebView
         android:layout_width="match_parent"

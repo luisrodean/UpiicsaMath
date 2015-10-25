@@ -1,5 +1,6 @@
-package com.belu.upiicsamath;
+package com.belu.upiicsamath.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import com.belu.upiicsamath.ui.fragment.FragmentAviso;
+import com.belu.upiicsamath.ui.fragment.FragmentCalendar;
+import com.belu.upiicsamath.ui.fragment.FragmentHorario;
+import com.belu.upiicsamath.ui.fragment.FragmentPagina;
+import com.belu.upiicsamath.R;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,7 +73,7 @@ public class Principal extends AppCompatActivity
         } else if (id == R.id.nav_aviso) {
             getFragmentManager().beginTransaction().replace(R.id.container_home, new FragmentAviso()).commit();
         } else if (id == R.id.nav_config) {
-
+            startActivity(new Intent(this,SettingsActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,19 +1,21 @@
-package com.belu.upiicsamath;
+package com.belu.upiicsamath.ui.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class FragmentPagina extends Fragment {
+import com.belu.upiicsamath.R;
 
-    private WebView web;
+public class FragmentAviso extends Fragment {
 
-    public FragmentPagina() {
+    EditText user , pass;
+    Button insert;
+
+    public FragmentAviso() {
     }
 
     @Override
@@ -24,8 +26,10 @@ public class FragmentPagina extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.fragment_pag, container, false);
-        web = (WebView) vista.findViewById(R.id.webView);
+        View vista = inflater.inflate(R.layout.fragment_avisos, container, false);
+        user = (EditText) vista.findViewById(R.id.txt_login_usuario);
+        pass = (EditText) vista.findViewById(R.id.txt_login_password);
+        insert = (Button) vista.findViewById(R.id.btn_loging_acceder);
         return vista;
     }
 
@@ -33,11 +37,6 @@ public class FragmentPagina extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        WebSettings webset = web.getSettings();
-        webset.setJavaScriptEnabled(true);
-
-        web.setWebViewClient(new WebViewClient());
-
-        web.loadUrl("http://192.168.0.3:8080/");
     }
+
 }
