@@ -1,4 +1,4 @@
-package com.belu.upiicsamath;
+package com.belu.upiicsamath.model;
 
 /**
  * Created by Luis on 11/10/2015.
