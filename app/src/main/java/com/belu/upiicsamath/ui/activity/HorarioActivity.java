@@ -1,19 +1,16 @@
-package com.belu.upiicsamath.ui.fragment;
+package com.belu.upiicsamath.ui.activity;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
-import com.belu.upiicsamath.R;
 
-public class FragmentHorario extends Fragment {
-
-    public FragmentHorario() {
-    }
-
+/**
+ * Created by Betza Ojeda on 29/10/2015.
+ */
+public class HorarioActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentManager().setText(getResources().getString(R.layout.fragment_horario));
+        getTxtTitleToolbar().setText(getResources().getString(R.string.title_catalog_main));
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container_catalog, CatalogFragment.newInstance()).commit();
@@ -22,7 +19,7 @@ public class FragmentHorario extends Fragment {
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.activity_principal;
+        return R.layout.activity_catalog;
     }
 
     @Override
@@ -31,7 +28,7 @@ public class FragmentHorario extends Fragment {
         switch (item.getItemId()) {
 
             case android.R.id.home:
-                super
+                super.onBackPressed();
                 overridePendingTransition(R.animator.open_main, R.animator.close_next);
                 break;
 
@@ -44,5 +41,4 @@ public class FragmentHorario extends Fragment {
         super.onBackPressed();
         overridePendingTransition(R.animator.open_main, R.animator.close_next);
     }
-
 }

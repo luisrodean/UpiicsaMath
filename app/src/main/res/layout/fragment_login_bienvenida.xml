@@ -1,58 +1,32 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
-    tools:context="com.belu.upiicsamath.ui.fragment.Fragment_Login_Bienvenida">
+    tools:context="com.belu.upiicsamath.Fragment_Login_Bienvenida">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/tv_loging_bienvenida"
-            android:id="@+id/tv_loging_bienvenida"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="49dp" />
+        android:layout_gravity="center">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/iv_login_bienvenida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@android:drawable/ic_menu_camera"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="125dp" />
+            android:layout_marginTop="90dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/tv_loging_bienvenida_nombre"
+            android:text="Large Text"
+            android:id="@+id/textView2"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/tv_loging_bienvenida_boleta"
-            android:layout_below="@+id/tv_loging_bienvenida_nombre"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="43dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_loging_bienvenida_finalizar"
-            android:id="@+id/btn_loging_bienvenida_finalizar"
-            android:layout_marginBottom="59dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/iv_login_bienvenida"
-            android:layout_toEndOf="@+id/iv_login_bienvenida" />
-
     </RelativeLayout>
+
+
 </FrameLayout>
