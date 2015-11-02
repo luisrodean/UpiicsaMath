@@ -1,4 +1,4 @@
-<resources>
+ <resources>
     <string name="app_name">"Upiicsa Math "</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -78,5 +78,8 @@
     <string name="error_incorrect_password">La contraseña es incorrecta</string>
     <string name="error_field_required">Campo requerio</string>
 
+    <!-- Strings related to login -->
+     <string name="tv_loging_bienvenida">Bienvenido</string>
+     <string name="btn_loging_bienvenida_finalizar">Finalizar</string>
 
-</resources>
+ </resources>

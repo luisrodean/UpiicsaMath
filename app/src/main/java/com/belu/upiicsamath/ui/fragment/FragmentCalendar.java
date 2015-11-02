@@ -8,8 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.belu.upiicsamath.R;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
+import java.util.Date;
 
 public class FragmentCalendar extends Fragment {
+
+    private MaterialCalendarView calendario;
 
     public FragmentCalendar() {
     }
@@ -22,7 +27,16 @@ public class FragmentCalendar extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        View vista = inflater.inflate(R.layout.fragment_calendar, container, false);
+            calendario = (MaterialCalendarView) vista.findViewById(R.id.calendarView);
+        return vista;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Date date = new Date();
+        date.setDate(2);
+        calendario.setDateSelected(date,true);
+    }
 }

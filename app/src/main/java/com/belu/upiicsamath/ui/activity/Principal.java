@@ -2,6 +2,7 @@ package com.belu.upiicsamath.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.HeaderViewListAdapter;
+import android.widget.TextView;
 
 import com.belu.upiicsamath.ui.fragment.FragmentAviso;
 import com.belu.upiicsamath.ui.fragment.FragmentCalendar;
@@ -22,10 +25,21 @@ import com.belu.upiicsamath.R;
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private String nombre;
+    private String apellidoP;
+    private String boleta;
+    private TextView tvNombre;
+    private TextView tvBoleta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        nombre = getIntent().getExtras().getString("Nombre");
+        apellidoP = getIntent().getExtras().getString("Apellido");
+        boleta = getIntent().getExtras().getString("Boleta");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

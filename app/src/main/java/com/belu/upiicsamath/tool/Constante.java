@@ -16,6 +16,7 @@ public class Constante {
     /**
      * URLs de Web Service
      */
-    private static final String INSERT = "http://" + IP + PUERTO_HOST + FOLDER + "obtener_alumno_por_id.php";
+    public static final String OBTENER_USUARIO_POR_ID = "http://" + IP + PUERTO_HOST + FOLDER + "obtener_alumno_por_id.php";
+    public static final String VALIDAR_LOGIN_USUARIO = "http://" + IP + PUERTO_HOST + FOLDER + "validar_login_usuario.php";
 
 }
