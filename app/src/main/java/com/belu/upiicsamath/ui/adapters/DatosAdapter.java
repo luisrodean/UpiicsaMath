@@ -2,6 +2,7 @@ package com.belu.upiicsamath.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,90 +12,56 @@ import android.widget.TextView;
 
 import com.belu.upiicsamath.R;
 import com.belu.upiicsamath.model.Datos;
-import com.development.postensa.R;
-import com.development.postensa.models.Product;
-import com.development.postensa.ui.activity.ZoomImage;
-import com.development.postensa.util.BitmapTransform;
-import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 
-/**
- * Created by Jhordan on 01/03/15.
- */
-public class DatosAdapter extends ArrayAdapter<Datos> {
+public class DatosAdapter extends RecyclerView.Adapter<DatosAdapter.datosViewHolder>{
 
-    ArrayList<Datos> datosArrayList;
-    LayoutInflater layoutInflater;
+    private ArrayList<Datos> item;
 
-    public DatosAdapter(Context context, ArrayList<Datos> datosArrayList) {
-
-        super(context, -1, datosArrayList);
-        this.datosArrayList = datosArrayList;
-        layoutInflater = LayoutInflater.from(context);
-
+    public DatosAdapter(ArrayList<Datos> item) {
+        this.item = item;
     }
-
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public datosViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.itemlistahorario, viewGroup, false);
+        datosViewHolder datos= new datosViewHolder(v);
+        return datos;
+    }
 
-        final ViewHolder holder;
-        final Datos datos = getItem(position);
-        int layout = R.layout.itemlistahorario;
+    @Override
+    public void onBindViewHolder(datosViewHolder ViewHolder, int i) {
+        ViewHolder.profesor.setText("Sandoval");
+        ViewHolder.uap.setText("Auditoria Informatica");
+        ViewHolder.secuencia.setText("2CM50");
+        ViewHolder.salon.setText("203");
+        ViewHolder.edificio.setText("Ingenieria");
+        ViewHolder.hInicio.setText("15:00");
+    }
 
-        if (convertView == null) {
+    @Override
+    public int getItemCount() {
+        return item.size();
+    }
 
-            convertView = layoutInflater.inflate(layout, null);
-            holder = new ViewHolder();
+    public class datosViewHolder extends RecyclerView.ViewHolder{
+        TextView profesor, secuencia, uap, edificio, salon, hInicio, hFin;
 
-            holder.tvSecuencia = (TextView)convertView.findViewById(R.id.tvSecuencia);
-            holder.tvEdificio = (TextView)convertView.findViewById(R.id.tvEdificio);
-            holder.tvProfesor = (TextView)convertView.findViewById(R.id.tvProfesor);
-            holder.tvHorario = (TextView)convertView
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+        public datosViewHolder(View itemView) {
+            super(itemView);
+
+            profesor=(TextView)itemView.findViewById(R.id.tvProfesor);
+            uap=(TextView)itemView.findViewById(R.id.tvUAP);
+            secuencia=(TextView)itemView.findViewById(R.id.tvSecuencia);
+            salon=(TextView)itemView.findViewById(R.id.tvSalon);
+            edificio=(TextView)itemView.findViewById(R.id.tvEdificio);
+            hInicio=(TextView)itemView.findViewById(R.id.tvHorario);
+
+
         }
-        holder.txtTitleProduct.setText(product.getName());
-        try {
-
-            holder.txtDescriptionProduct.setText(new String(product.getDescription().getBytes("ISO-8859-1"), "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        holder.imageViewProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Zoom = new Intent(getContext(), ZoomImage.class);
-                Zoom.putExtra("url",product.getPath());
-                getContext().startActivity(Zoom);
-            }
-        });
-
-        Picasso.with(getContext()).load("file://" + product.getPath())
-                .transform(new BitmapTransform(BitmapTransform.MAX_WIDTH, BitmapTransform.MAX_HEIGHT))
-                .resize(BitmapTransform.SIZE, BitmapTransform.SIZE)
-                .centerInside()
-                .into(holder.imageViewProduct);
-
-
-        return convertView;
     }
 
-    public Datos getItem(int position) {
-        return super.getItem(position);
-    }
-
-    public static class ViewHolder {
-        TextView tvSecuencia;
-        TextView tvProfesor;
-        TextView tvHorario;
-        TextView tvSalon;
-        TextView tvUAP;
-        TextView tvEdificio;
-    }
 }

@@ -1,86 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="horizontal">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp">
 
-    <TableLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight=".95">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".95">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:layout_margin="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Profesor"
-                android:id="@+id/tvProfesor"/>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:layout_margin="7dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="UAP"
-                android:id="@+id/tvUAP"/>
+                <TextView
+                    android:id="@+id/tvProfesor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".33"
+                    android:text="Profesor"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:layout_margin="7dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Secuencia"
-                android:id="@+id/tvSecuencia" />
+                <TextView
+                    android:id="@+id/tvUAP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    android:layout_weight=".33"
+                    android:text="UAP"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/tvSecuencia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    android:layout_weight=".33"
+                    android:text="Secuencia"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            </TableRow>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:layout_margin="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Horario"
-                android:id="@+id/tvHorario"/>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:layout_margin="7dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Edificio"
-                android:id="@+id/tvEdificio"
-                android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvHorario"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".33"
+                    android:text="Horario"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:layout_margin="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Salon"
-                android:id="@+id/tvSalon"/>
+                <TextView
+                    android:id="@+id/tvEdificio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    android:layout_weight=".33"
+                    android:text="Edificio"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
 
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:id="@+id/tvSalon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".33"
+                    android:text="Salon"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_weight=".05"
-        android:id="@+id/BarraColor"
-        android:layout_height="70dp"
-        android:background="#f9f31b13"></FrameLayout>
+            </TableRow>
+        </TableLayout>
 
-</LinearLayout>
+        <FrameLayout
+            android:id="@+id/BarraColor"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight=".05"
+            android:background="#f9f31b13"></FrameLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

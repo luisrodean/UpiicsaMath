@@ -11,7 +11,8 @@ public class Constante {
     /**
      * Dirección IP de webservice
      */
-    private static final String IP = "192.168.0.7";
+    //private static final String IP = "192.168.0.7";
+    private static final String IP = "192.168.1.70";
     private static final String FOLDER = "/wsmathupiicsa/";
     /**
      * URLs de Web Service

@@ -1,3 +1,7 @@
+
+
+
+
 package com.belu.upiicsamath.model;
 
 /**
@@ -11,9 +15,30 @@ public class Datos {
     private String hinicio;
     private String hfin;
     private String secuencia;
-    private long id;
 
-    public Datos(String uap, String edificio, String salon, String dweek, String hinicio, String hfin, String secuencia, long id) {
+    public String getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
+    }
+
+    private String profesor;
+    private int id;
+
+    public Datos(){
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Datos(String uap, String edificio, String salon, String dweek, String hinicio, String hfin, String secuencia, int id, String Profesor) {
         this.uap = uap;
         this.edificio = edificio;
         this.salon = salon;
@@ -49,11 +74,8 @@ public class Datos {
     }
 
     public String getSecuencia() {
-        return secuencia;
-    }
 
-    public long getId() {
-        return id;
+        return secuencia;
     }
 
     public void setUap(String uap) {
@@ -84,7 +106,4 @@ public class Datos {
         this.secuencia = secuencia;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 }
