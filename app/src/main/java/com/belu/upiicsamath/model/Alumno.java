@@ -3,7 +3,7 @@ package com.belu.upiicsamath.model;
 /**
  * Created by Luis on 25/10/2015.
  */
-public class Alumno {
+public class Alumno{
 
     private int id_boleta;
     private String nombre;
@@ -15,7 +15,6 @@ public class Alumno {
     public Alumno(){}
 
     public Alumno(int id_boleta, String nombre, String apellido_paterno, String apellido_materno, String licenciatura, String pass) {
-
         this.id_boleta = id_boleta;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
@@ -23,6 +22,7 @@ public class Alumno {
         this.licenciatura = licenciatura;
         this.pass = pass;
     }
+
 
     public int getId_boleta() {
         return id_boleta;

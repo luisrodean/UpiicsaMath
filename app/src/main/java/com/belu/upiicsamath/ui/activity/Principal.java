@@ -40,8 +40,6 @@ public class Principal extends AppCompatActivity
         apellidoP = getIntent().getExtras().getString("Apellido");
         boleta = getIntent().getExtras().getString("Boleta");
 
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +49,7 @@ public class Principal extends AppCompatActivity
             }
         });
         */
+        
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

@@ -3,9 +3,9 @@ package com.belu.upiicsamath.ui.fragment;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -17,10 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,10 +29,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.belu.upiicsamath.R;
 import com.belu.upiicsamath.model.Alumno;
 import com.belu.upiicsamath.tool.Constante;
-import com.belu.upiicsamath.ui.activity.Principal;
 import com.belu.upiicsamath.web.VolleySingleton;
 import com.google.gson.Gson;
-import com.google.gson.JsonParser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,9 +43,6 @@ public class FragmentLoging extends Fragment {
     private Button btnAcceder;
     private View mProgressView;
     private View mLoginFormView;
-
-    // Progress Dialog
-    private ProgressBar pbar;
 
     private String user;
     private String pass;
@@ -70,8 +63,6 @@ public class FragmentLoging extends Fragment {
         mLoginFormView = vista.findViewById(R.id.login_form);
         mProgressView = vista.findViewById(R.id.login_progress);
 
-        pbar = (ProgressBar) vista.findViewById(R.id.login_progress);
-
         return vista;
     }
 
@@ -82,7 +73,7 @@ public class FragmentLoging extends Fragment {
         btnAcceder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Login();
+                    Login();
             }
         });
     }
@@ -111,22 +102,19 @@ public class FragmentLoging extends Fragment {
             focusView = txtuser;
             cancel = true;
         }
-/*
-        if (!isUserValid(user) && !isPasswordValid(pass)) {
-            txtuser.setError(getString(R.string.error_invalid_usuario));
-            focusView = txtuser;
-            cancel = true;
-        }
-*/
+
         if (cancel) {
             focusView.requestFocus();
         } else {
-            EnviarDatos();
-            // Snackbar.make(btnAcceder, "Se ha iniciado sesion", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-//            showProgress(true);
+            if(isOnline()) {
+                EnviarDatos();
+            }
         }
 
-    }/**
+    }
+
+
+    /**
      * Guarda los cambios de un alumno.
      * <p/>
      * Si está en modo inserción, entonces crea una nueva
@@ -199,7 +187,7 @@ public class FragmentLoging extends Fragment {
             switch (estado) {
                 case "EXITO": // EXITO
                     // Obtener array "alumno" Json
-                    JSONObject mensaje = response.getJSONObject("alumno");
+                    JSONObject mensaje = response.getJSONObject("usuario");
                     // Parsear con Gson y guarda en objeto Alumno
                     alumno = gson.fromJson(mensaje.toString(), Alumno.class);
                     //Se imprime en consola los datos recibidos
@@ -209,8 +197,9 @@ public class FragmentLoging extends Fragment {
                     Log.d("--> ", alumno.getApellido_materno());
                     Log.d("--> ", alumno.getLicenciatura());
                     Log.d("--> ", alumno.getPass());
-                    validasesion();
-//                    Toast.makeText(getActivity(),alumno.getNombre(),Toast.LENGTH_LONG).show();
+                    Log.d("--> ", "Inicio sesion correcto  " + alumno.getNombre());
+                    getFragmentManager().beginTransaction().replace(R.id.container_login, new Fragment_Login_Bienvenida(alumno)).commit();
+
                     break;
                 case "FALLIDO": // FALLIDO
                     String mensaje2 = response.getString("mensaje");
@@ -222,16 +211,21 @@ public class FragmentLoging extends Fragment {
         } catch (JSONException e) {
             Log.d("-->", e.getMessage());
         }
-
     }
 
-    private void validasesion(){
-        if(user.equals(Integer.toString(alumno.getId_boleta())) && pass.equals(alumno.getPass())){
-            Log.d("--> ", "Inicio sesion correcto  " + alumno.getNombre());
-            getFragmentManager().beginTransaction().replace(R.id.container_login, new Fragment_Login_Bienvenida(alumno)).commit();
+
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        boolean enabled = true;
+        String mensaje = "Conectando";
+
+        if ((netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable())){
+            enabled = false;
+            mensaje = "Sin conexion a internet";
         }
+        Toast.makeText(getActivity().getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
+
+        return enabled;
     }
-
-
 }
-

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.belu.upiicsamath.R;
+import com.belu.upiicsamath.tool.Fecha;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.Date;
@@ -36,7 +37,8 @@ public class FragmentCalendar extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Date date = new Date();
-        date.setDate(2);
+        date.setDate(new Fecha().getDia());
         calendario.setDateSelected(date,true);
+        calendario.setSoundEffectsEnabled(true);
     }
 }
