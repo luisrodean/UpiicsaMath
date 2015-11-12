@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="4dp">
+
+
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -13,20 +15,22 @@
 
         <TableLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".95">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight=".5">
 
                 <TextView
                     android:id="@+id/tvProfesor"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="7dp"
                     android:layout_weight=".33"
                     android:text="Profesor"
+                    android:textSize="14sp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -36,6 +40,7 @@
                     android:layout_margin="7dp"
                     android:layout_weight=".33"
                     android:text="UAP"
+                    android:textSize="14sp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -45,21 +50,26 @@
                     android:layout_margin="7dp"
                     android:layout_weight=".33"
                     android:text="Secuencia"
+                    android:textSize="14sp"
+                    android:gravity="right"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight=".5">
 
                 <TextView
                     android:id="@+id/tvHorario"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="7dp"
                     android:layout_weight=".33"
                     android:text="Horario"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -69,16 +79,20 @@
                     android:layout_margin="7dp"
                     android:layout_weight=".33"
                     android:text="Edificio"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/tvSalon"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="7dp"
                     android:layout_weight=".33"
                     android:text="Salon"
+                    android:textSize="14sp"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </TableRow>
@@ -87,7 +101,7 @@
         <FrameLayout
             android:id="@+id/BarraColor"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="match_parent"
             android:layout_weight=".05"
             android:background="#f9f31b13"></FrameLayout>
     </LinearLayout>

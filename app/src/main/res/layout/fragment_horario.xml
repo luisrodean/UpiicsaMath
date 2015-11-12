@@ -34,7 +34,7 @@
                 android:gravity="center"
                 android:hint="@string/catalog_search_hit"
                 android:inputType="textEmailAddress"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </LinearLayout>
