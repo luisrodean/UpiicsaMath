@@ -22,6 +22,7 @@ public class ConsultaHorario {
     private String dir_host;
     private String password;
 
+
     public ConsultaHorario() {
     }
 
