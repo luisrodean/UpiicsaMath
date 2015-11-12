@@ -1,27 +1,22 @@
 package com.belu.upiicsamath.ui.adapters;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.belu.upiicsamath.R;
-import com.belu.upiicsamath.model.Datos;
+import com.belu.upiicsamath.model.ConsultaHorario;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 
 public class DatosAdapter extends RecyclerView.Adapter<DatosAdapter.datosViewHolder>{
 
-    private ArrayList<Datos> item;
+    private ArrayList<ConsultaHorario> item;
 
-    public DatosAdapter(ArrayList<Datos> item) {
+    public DatosAdapter(ArrayList<ConsultaHorario> item) {
         this.item = item;
     }
 
