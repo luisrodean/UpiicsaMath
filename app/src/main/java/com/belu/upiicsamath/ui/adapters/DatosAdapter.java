@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.belu.upiicsamath.R;
-import com.belu.upiicsamath.model.ConsultaHorario;
+import com.belu.upiicsamath.model.Horario;
 
 import java.util.ArrayList;
 
 
 public class DatosAdapter extends RecyclerView.Adapter<DatosAdapter.datosViewHolder>{
 
-    private ArrayList<ConsultaHorario> item;
+    private ArrayList<Horario> item;
 
-    public DatosAdapter(ArrayList<ConsultaHorario> item) {
+    public DatosAdapter(ArrayList<Horario> item) {
         this.item = item;
     }
 

@@ -18,6 +18,7 @@ public class Constante {
     /**
      * URLs de Web Service
      */
+    public static final String GET_GRUPO_BY_LICENCIATURA = "http://" + URL + FOLDER + "get_all_secuencias.php";
     public static final String GET_HORARIO = "http://" + URL + FOLDER + "get_horario.php";
     public static final String VALIDAR_LOGIN_USUARIO = "http://" + URL + FOLDER + "validar_login_usuario.php";
 

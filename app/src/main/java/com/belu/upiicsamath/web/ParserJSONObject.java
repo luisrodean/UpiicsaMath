@@ -7,9 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.belu.upiicsamath.model.Alumno;
-import com.belu.upiicsamath.model.ConsultaHorario;
-import com.belu.upiicsamath.tool.Constante;
+import com.belu.upiicsamath.model.Horario;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -95,7 +93,7 @@ public class ParserJSONObject {
      */
     private void procesarRespuesta() {
         try {
-            ConsultaHorario horario = new ConsultaHorario();
+            Horario horario = new Horario();
             Gson gson = new Gson();
             // Obtener atributo "estado"
             String estado = response.getString("estado");
@@ -105,14 +103,8 @@ public class ParserJSONObject {
                     // Obtener array "alumno" Json
                     JSONObject mensaje = response.getJSONObject("horario");
                     // Parsear con Gson y guarda en objeto Alumno
-                    horario = gson.fromJson(mensaje.toString(), ConsultaHorario.class);
+                    horario = gson.fromJson(mensaje.toString(), Horario.class);
                     //Se imprime en consola los datos recibidos
-                    Log.d("--> ", horario.getId_grupo());
-                    Log.d("--> ", horario.getId_secuencia());
-                    Log.d("--> ", horario.getNombre_uap());
-                    Log.d("--> ", horario.getNombre_profesor());
-                    Log.d("--> ", horario.getApellido_paterno_profesor());
-                    Log.d("--> ", horario.getApellido_materno_profesor());
                     Log.d("--> ", horario.getId_dia());
                     Log.d("--> ", horario.getHora_inicio());
                     Log.d("--> ", horario.getHora_fin());

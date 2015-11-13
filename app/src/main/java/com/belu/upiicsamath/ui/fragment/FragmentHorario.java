@@ -7,32 +7,19 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.belu.upiicsamath.model.Grupo;
 import com.belu.upiicsamath.ui.activity.BusquedaHorario;
 import com.belu.upiicsamath.R;
-import com.belu.upiicsamath.model.ConsultaHorario;
-import com.belu.upiicsamath.tool.Constante;
+import com.belu.upiicsamath.model.Horario;
 import com.belu.upiicsamath.ui.adapters.DatosAdapter;
-import com.belu.upiicsamath.web.VolleySingleton;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class FragmentHorario extends Fragment {
 
@@ -73,15 +60,16 @@ public class FragmentHorario extends Fragment {
             }
         });
         //Se instancia un objeto de tipo ArrayList llamado datos
-        ArrayList<ConsultaHorario> datos = new ArrayList<>();
+        ArrayList<Horario> datos = new ArrayList<>();
 
         //Se instancia un objeto de tipo datos llamado datos
-            ConsultaHorario informacion = new ConsultaHorario();
+        Horario informacion = new Horario();
+        Grupo grupo = new Grupo();
                 informacion.setNombre_edificio("Ingenieria");
                 informacion.setSalon("203");
-                informacion.setNombre_uap("Auditoria informatica");
-                informacion.setId_secuencia("123");
-                informacion.setNombre_profesor("Sandoval");
+                grupo.setNombre_uap("Auditoria informatica");
+                grupo.setId_secuencia("123");
+                grupo.setNombre_profesor("Sandoval");
                 informacion.setHora_inicio("15:00");
                 informacion.setHora_fin("16:00");
 
