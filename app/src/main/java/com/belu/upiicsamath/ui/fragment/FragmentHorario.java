@@ -1,8 +1,10 @@
 package com.belu.upiicsamath.ui.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,14 +18,15 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.belu.upiicsamath.ui.activity.BusquedaHorario;
 import com.belu.upiicsamath.R;
-import com.belu.upiicsamath.model.Alumno;
 import com.belu.upiicsamath.model.ConsultaHorario;
 import com.belu.upiicsamath.tool.Constante;
 import com.belu.upiicsamath.ui.adapters.DatosAdapter;
 import com.belu.upiicsamath.web.VolleySingleton;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,10 +40,11 @@ public class FragmentHorario extends Fragment {
    public FragmentHorario() {
     }
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private FloatingActionButton fab;
     GridView gridview;
     //Se declara objeto datosAdapter de tipo DatosAdapter
-    DatosAdapter datosAdapter;
+    private DatosAdapter datosAdapter;
     //PostensaAdapterDB postensaAdapterDB;
     //Realiza busqueda del usuario
     EditText txtSearch;
@@ -50,6 +54,8 @@ public class FragmentHorario extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_horario, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.reciclador);
+        fab = (FloatingActionButton) rootView.findViewById(R.id.agregar_horario);
+
         return rootView;
     }
 
@@ -57,6 +63,15 @@ public class FragmentHorario extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity().getApplicationContext(), BusquedaHorario.class));
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                        */
+            }
+        });
         //Se instancia un objeto de tipo ArrayList llamado datos
         ArrayList<ConsultaHorario> datos = new ArrayList<>();
 
@@ -134,104 +149,5 @@ public class FragmentHorario extends Fragment {
     }
 
 
-
-
-    /**
-     * Guarda los cambios de un alumno.
-     * <p/>
-     * Si está en modo inserción, entonces crea una nueva
-     * meta en la base de datos
-     */
-    public void EnviarDatos() {
-        HashMap<String, String> map = new HashMap<>();
-
-        // Mapeo previo donde key = a parametros recibidos en el SW
-        map.put("id_secuencia", "5CM81");
-
-        // Crear nuevo objeto Json basado en el mapa
-        JSONObject jobject = new JSONObject(map);
-
-        // Depurando objeto Json...
-        Log.d("-->objeto JSON creado: ", jobject.toString());
-
-        // Actualizar datos en el servidor
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(
-                new JsonObjectRequest(
-                        Request.Method.POST,
-                        Constante.VALIDAR_LOGIN_USUARIO,
-                        jobject,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                // Procesar la respuesta del servidor
-                                procesarRespuesta(response);
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.d("-->Error Volley: ", error.getMessage());
-                            }
-                        }
-
-                ) {
-                    @Override
-                    public Map<String, String> getHeaders() {
-                        Map<String, String> headers = new HashMap<String, String>();
-                        headers.put("Content-Type", "application/json; charset=utf-8");
-                        headers.put("Accept", "application/json");
-                        return headers;
-                    }
-
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=utf-8" + getParamsEncoding();
-                    }
-                }
-        );
-
-    }
-
-
-    /**
-     * Interpreta los resultados de la respuesta y así
-     * realizar las operaciones correspondientes
-     *
-     * @param response Objeto Json con la respuesta
-     */
-    private void procesarRespuesta(JSONObject response) {
-        try {
-            Gson gson = new Gson();
-            // Obtener atributo "estado"
-            String estado = response.getString("estado");
-
-            switch (estado) {
-                case "EXITO": // EXITO
-                    // Obtener array "alumno" Json
-                    JSONObject mensaje = response.getJSONObject("usuario");
-                    // Parsear con Gson y guarda en objeto Alumno
-                 /*   alumno = gson.fromJson(mensaje.toString(), Alumno.class);
-                    //Se imprime en consola los datos recibidos
-                    Log.d("--> ", Integer.toString(alumno.getId_boleta()));
-                    Log.d("--> ", alumno.getNombre());
-                    Log.d("--> ", alumno.getApellido_paterno());
-                    Log.d("--> ", alumno.getApellido_materno());
-                    Log.d("--> ", alumno.getLicenciatura());
-                    Log.d("--> ", alumno.getPass());
-                    Log.d("--> ", "Inicio sesion correcto  " + alumno.getNombre());
-                    getFragmentManager().beginTransaction().replace(R.id.container_login, new Fragment_Login_Bienvenida(alumno)).commit();
-*/
-                    break;
-                case "FALLIDO": // FALLIDO
-                    String mensaje2 = response.getString("mensaje");
-                    //Toast.makeText(getActivity().getApplicationContext(),mensaje2,Toast.LENGTH_LONG).show();
-                    Log.d("-->", mensaje2);
-                    break;
-            }
-
-        } catch (JSONException e) {
-            Log.d("-->", e.getMessage());
-        }
-    }
 }
 

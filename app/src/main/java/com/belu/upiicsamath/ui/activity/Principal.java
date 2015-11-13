@@ -1,10 +1,12 @@
 package com.belu.upiicsamath.ui.activity;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -35,6 +37,7 @@ public class Principal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+        getFragmentManager().beginTransaction().replace(R.id.container_home, new FragmentHorario()).commit();
 /*
         nombre = getIntent().getExtras().getString("Nombre");
         apellidoP = getIntent().getExtras().getString("Apellido");
@@ -78,16 +81,20 @@ public class Principal extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_horario) {
+            Log.d("---->: ", "selecciono horario");
             getFragmentManager().beginTransaction().replace(R.id.container_home, new FragmentHorario()).commit();
         } else if (id == R.id.nav_pagina) {
+            Log.d("---->: ", "selecciono pagina");
             getFragmentManager().beginTransaction().replace(R.id.container_home, new FragmentPagina()).commit();
         } else if (id == R.id.nav_calendario) {
+            Log.d("---->: ", "selecciono calendario");
             getFragmentManager().beginTransaction().replace(R.id.container_home, new FragmentCalendar()).commit();
         } else if (id == R.id.nav_aviso) {
+            Log.d("---->: ", "selecciono avisos");
             getFragmentManager().beginTransaction().replace(R.id.container_home, new FragmentAviso()).commit();
         } else if (id == R.id.nav_config) {
+            Log.d("---->: ", "selecciono configuraciones");
             startActivity(new Intent(this,SettingsActivity.class));
         }
 

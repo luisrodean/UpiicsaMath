@@ -86,6 +86,7 @@
     <!-- Strings related to login -->
     <string name="tv_loging_bienvenida">Bienvenido</string>
     <string name="btn_loging_bienvenida_finalizar">Finalizar</string>
+    <string name="title_activity_busqueda_horario">Busqueda Horario</string>
 
 
 </resources>
