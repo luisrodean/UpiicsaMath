@@ -13,7 +13,6 @@ public class Grupo {
 
     public Grupo() {}
 
-
     public Grupo(String id_grupo, String id_secuencia, String nombre_uap, String nombre_profesor, String apellido_paterno_profesor, String apellido_materno_profesor) {
         this.id_grupo = id_grupo;
         this.id_secuencia = id_secuencia;
@@ -22,6 +21,7 @@ public class Grupo {
         this.apellido_paterno_profesor = apellido_paterno_profesor;
         this.apellido_materno_profesor = apellido_materno_profesor;
     }
+
     public String getId_grupo() {
         return id_grupo;
     }

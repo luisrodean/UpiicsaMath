@@ -30,7 +30,7 @@ public class RegistroActivity extends Activity {
     private String[] Carreras;
 
     //Creación del Array Adapter
-    ArrayAdapter Adapter;
+    ArrayAdapter<CharSequence> Adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,11 +44,7 @@ public class RegistroActivity extends Activity {
                                 "Ciencias de la Informática",
                                 "Ingeniería en Informática"};
         */
-        //Instanciar Array Adapter
-      //  Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Carreras);
-        Adapter = ArrayAdapter.createFromResource(this, R.array.Carreras, android.R.layout.simple_spinner_item);
-        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spn_Licenciatura.setAdapter(Adapter);
+
 
         //Obtenemos las referencias a los controles
         //Textos
@@ -76,16 +72,28 @@ public class RegistroActivity extends Activity {
             }
         });
 
+        //Asignas el origen de datos desde los recursos
+        Adapter = ArrayAdapter.createFromResource(this, R.array.Carreras, android.R.layout.simple_spinner_item);
+        //Asignas el layout a inflar para cada elemento al momento de desplegar la lista
+        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Seteas el adaptador
+        spn_Licenciatura.setAdapter(Adapter);
 
         //Acción a Spinner
-        spn_Licenciatura.setAdapter(Adapter);
-     /*   spn_Licenciatura.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "Haz seleccionado: " + Carreras[position],Toast.LENGTH_LONG);
-            }
-        });
-        */
+       spn_Licenciatura.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               String seleccion = parent.getItemAtPosition(position).toString();
+
+               //Mostramos la selección actual del Spinner
+               Toast.makeText(getApplication().getApplicationContext(), "Haz seleccionado: " + seleccion ,Toast.LENGTH_LONG).show();
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+
+           }
+       });
         }
 
 

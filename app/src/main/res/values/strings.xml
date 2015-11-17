@@ -87,14 +87,13 @@
     <string name="btn_registro_Registrar">Registrar</string>
 
     <!-- Arreglo Strings "Carreras" related to fragment_registro_alumno-->
-    <Strinng-array name="Carreras">//
+    <string-array name="Carreras">//
         <item>Administración Industrial</item>
         <item>Ingeniería Industrial</item>
         <item>Ingenieria en Transporte</item>
         <item>Ciencias de la Informática</item>
         <item>Ingeniería en Informática</item>
-    </Strinng-array>
-
+    </string-array>
 
 
     <!--Catalog fragment-->

@@ -4,6 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -14,6 +19,7 @@ import com.belu.upiicsamath.R;
 import com.belu.upiicsamath.model.Horario;
 import com.belu.upiicsamath.model.Grupo;
 import com.belu.upiicsamath.tool.Constante;
+import com.belu.upiicsamath.ui.adapters.GruposAdapter;
 import com.belu.upiicsamath.web.VolleySingleton;
 import com.google.gson.Gson;
 
@@ -21,11 +27,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BusquedaHorario extends AppCompatActivity {
-    private Grupo[] grupo;
+    private Spinner spLicenciatura;
+    private Spinner spSecuencia;
+    private GridView grid_grupo;
+
+    private ArrayList<Grupo> listaGrupo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +46,45 @@ public class BusquedaHorario extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        spLicenciatura = (Spinner) findViewById(R.id.spinner_filtro_lic);
+        spSecuencia = (Spinner) findViewById(R.id.spinner_filtro_sec);
+        grid_grupo = (GridView) findViewById(R.id.gridView);
 
+        ArrayAdapter<String> adapterLic = new ArrayAdapter<>(
+                getSupportActionBar().getThemedContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                new String[]{"Ciencias de la informática", "Ingenieria en transportes", "Ingenieria en informatica"});
+
+        ArrayAdapter<String> adapterSec = new ArrayAdapter<>(
+                getSupportActionBar().getThemedContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                new String[]{"5CM81", "5CM80", "4CM81"});
+
+        spLicenciatura.setAdapter(adapterLic);
+        spSecuencia.setAdapter(adapterSec);
+
+//--------------llenado del grid-------------------
+
+        getGrupos("Ciencias de la informática", "5CM81");
+        Grupo grupo = new Grupo();
+        grupo.setId_grupo("fsdfsdfdsds");
+        grupo.setNombre_profesor("fsdfdsf");
+        listaGrupo.add(grupo);
+        GruposAdapter gruposAdapter = new GruposAdapter(this,listaGrupo);
+        grid_grupo.setAdapter(gruposAdapter);
+
+/*
         getGrupos("Ciencias de la informática", "5CM81");
        //despues de seleccionar se guarda en BD
         getAgregarHorario("5CM80-27");
+  */
     }
+
+
+    private void mensaje (String mensaje){
+        Toast.makeText(this,mensaje,Toast.LENGTH_LONG).show();
+    }
+
 
     /**
      * Guarda los cambios de un alumno.
@@ -174,12 +219,12 @@ public class BusquedaHorario extends AppCompatActivity {
                     Horario[] horario = gson.fromJson(mensaje.toString(), Horario[].class);
                     for(int i=0; i < horario.length;i++) {
                         //Se imprime en consola los datos del grupo seleccionado
-                        Log.d("--> ", grupo[i].getId_grupo());
-                        Log.d("--> ", grupo[i].getId_secuencia());
-                        Log.d("--> ", grupo[i].getNombre_uap());
-                        Log.d("--> ", grupo[i].getNombre_profesor());
-                        Log.d("--> ", grupo[i].getApellido_paterno_profesor());
-                        Log.d("--> ", grupo[i].getApellido_materno_profesor());
+                        Log.d("--> ", listaGrupo.get(i).getId_grupo());
+                        Log.d("--> ", listaGrupo.get(i).getId_secuencia());
+                        Log.d("--> ", listaGrupo.get(i).getNombre_uap());
+                        Log.d("--> ", listaGrupo.get(i).getNombre_profesor());
+                        Log.d("--> ", listaGrupo.get(i).getApellido_paterno_profesor());
+                        Log.d("--> ", listaGrupo.get(i).getApellido_materno_profesor());
                         //Se imprime en consola los datos recibidos
                         Log.d("--> ", horario[i].getId_dia());
                         Log.d("--> ", horario[i].getHora_inicio());
@@ -219,7 +264,7 @@ public class BusquedaHorario extends AppCompatActivity {
                     // Obtener array "alumno" Json
                     JSONArray mensaje = response.getJSONArray("grupos");
                     // Parsear con Gson y guarda en el arreglo de objetos ConsultaHorarios
-                    grupo = gson.fromJson(mensaje.toString(), Grupo[].class);
+                    Grupo[] grupo = gson.fromJson(mensaje.toString(), Grupo[].class);
                     for(int i=0; i < grupo.length;i++) {
 
                         //Se imprime en consola los datos recibidos
@@ -229,6 +274,7 @@ public class BusquedaHorario extends AppCompatActivity {
                         Log.d("--> ", grupo[i].getNombre_profesor());
                         Log.d("--> ", grupo[i].getApellido_paterno_profesor());
                         Log.d("--> ", grupo[i].getApellido_materno_profesor());
+
                     }
                     break;
                 case "FALLIDO": // FALLIDO
