@@ -56,8 +56,6 @@ public class BusquedaHorario extends AppCompatActivity {
         Adapter = ArrayAdapter.createFromResource(this, R.array.Carreras, android.R.layout.simple_spinner_item);
         //Asignas el layout a inflar para cada elemento al momento de desplegar la lista
         Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Seteas el adaptador
-        spLicenciatura.setAdapter(Adapter);
 
         //Acción a Spinner
         spLicenciatura.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -66,6 +64,7 @@ public class BusquedaHorario extends AppCompatActivity {
                 String seleccion = parent.getItemAtPosition(position).toString();
                 //Mostramos la selección actual del Spinner
                 Toast.makeText(getApplication().getApplicationContext(), "Haz seleccionado: " + seleccion, Toast.LENGTH_LONG).show();
+                getGrupos(seleccion, "5CM81");
             }
 
             @Override
@@ -79,13 +78,12 @@ public class BusquedaHorario extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item,
                 new String[]{"5CM81", "5CM80", "4CM81"});
 
+        //Seteas el adaptador
         spLicenciatura.setAdapter(Adapter);
         spSecuencia.setAdapter(adapterSec);
 
+
 //--------------  llenado del grid  -------------------
-
-        getGrupos("Ciencias de la informática", "5CM81");
-
 
 /*
         getGrupos("Ciencias de la informática", "5CM81");
