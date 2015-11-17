@@ -78,6 +78,25 @@
     <string name="error_incorrect_password">La contraseña es incorrecta</string>
     <string name="error_field_required">Campo requerio</string>
 
+    <!-- Strings related to fragment_registro_alumno -->
+    <string name="txt_registro_id_boleta">Boleta</string>
+    <string name="txt_registro_nombre">Nombre</string>
+    <string name="txt_registro_apellido_paterno">Apellido Paterno</string>
+    <string name="txt_registro_apellido_materno">Apellido Materno</string>
+    <string name="spn_registro_licenciatura">Licenciatura</string>
+    <string name="btn_registro_Registrar">Registrar</string>
+
+    <!-- Arreglo Strings "Carreras" related to fragment_registro_alumno
+    <Strinng-array name="Carreras">
+        <iten>Administración Industrial</iten>
+        <iten>Ingeniería Industrial</iten>
+        <iten>Ingenieria en Transporte</iten>
+        <iten>Ciencias de la Informática</iten>
+        <iten>Ingeniería en Informática</iten>
+    </Strinng-array>
+-->
+
+
     <!--Catalog fragment-->
     <string name="catalog_search_hit">Buscar por nombre   </string>
     <string name="title_activity_zoom_image">ZoomImage</string>
