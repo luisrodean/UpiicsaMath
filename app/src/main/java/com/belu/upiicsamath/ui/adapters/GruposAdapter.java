@@ -40,11 +40,17 @@ public class GruposAdapter extends ArrayAdapter<Grupo> {
 
         int layout = R.layout.item_listabusqueda_horario;
 
+        String secuencia = grupoArrayList.get(position).getId_secuencia();
+        String appP = grupoArrayList.get(position).getApellido_paterno_profesor();
+        String appM = grupoArrayList.get(position).getApellido_materno_profesor();
+        String profesor = grupoArrayList.get(position).getNombre_profesor();
+        String uap = grupoArrayList.get(position).getNombre_uap();
+
         convertView = layoutInflater.inflate(layout, null);
         viewHolder = new ViewHolder(convertView);
 
-            viewHolder.txtId_grupo.setText(grupoArrayList.get(position).getId_grupo());
-            viewHolder.txtProfesor.setText(grupoArrayList.get(position).getNombre_profesor());
+            viewHolder.txtId_grupo.setText(secuencia + " - " + uap);
+            viewHolder.txtProfesor.setText(profesor + " " + appP  + " " + appM);
         convertView.setTag(viewHolder);
 
         return convertView;

@@ -2,9 +2,9 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="170dp"
-    android:layout_height="80dp"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="4dp">
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="7dp"
+    card_view:cardElevation="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,8 +35,8 @@
                     android:layout_margin="7dp"
                     android:layout_weight=".33"
                     android:text="Grupo"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="14sp" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
             </TableRow>
 
@@ -54,7 +54,7 @@
                     android:layout_weight=".33"
                     android:text="Profesor"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
             </TableRow>
         </TableLayout>

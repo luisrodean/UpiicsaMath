@@ -80,7 +80,7 @@ public class RegistroActivity extends Activity {
         spn_Licenciatura.setAdapter(Adapter);
 
         //Acción a Spinner
-       spn_Licenciatura.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spn_Licenciatura.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                String seleccion = parent.getItemAtPosition(position).toString();
@@ -93,7 +93,8 @@ public class RegistroActivity extends Activity {
            public void onNothingSelected(AdapterView<?> parent) {
 
            }
-       });
+        });
+
         }
 
 

@@ -36,6 +36,8 @@ public class BusquedaHorario extends AppCompatActivity {
     private Spinner spSecuencia;
     private GridView grid_grupo;
 
+    //Creación del Array Adapter
+    private ArrayAdapter<CharSequence> Adapter;
     private ArrayList<Grupo> listaGrupo;
 
     @Override
@@ -50,28 +52,40 @@ public class BusquedaHorario extends AppCompatActivity {
         spSecuencia = (Spinner) findViewById(R.id.spinner_filtro_sec);
         grid_grupo = (GridView) findViewById(R.id.gridView);
 
-        ArrayAdapter<String> adapterLic = new ArrayAdapter<>(
-                getSupportActionBar().getThemedContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                new String[]{"Ciencias de la informática", "Ingenieria en transportes", "Ingenieria en informatica"});
+        //Asignas el origen de datos desde los recursos
+        Adapter = ArrayAdapter.createFromResource(this, R.array.Carreras, android.R.layout.simple_spinner_item);
+        //Asignas el layout a inflar para cada elemento al momento de desplegar la lista
+        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Seteas el adaptador
+        spLicenciatura.setAdapter(Adapter);
+
+        //Acción a Spinner
+        spLicenciatura.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String seleccion = parent.getItemAtPosition(position).toString();
+                //Mostramos la selección actual del Spinner
+                Toast.makeText(getApplication().getApplicationContext(), "Haz seleccionado: " + seleccion, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         ArrayAdapter<String> adapterSec = new ArrayAdapter<>(
                 getSupportActionBar().getThemedContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 new String[]{"5CM81", "5CM80", "4CM81"});
 
-        spLicenciatura.setAdapter(adapterLic);
+        spLicenciatura.setAdapter(Adapter);
         spSecuencia.setAdapter(adapterSec);
 
-//--------------llenado del grid-------------------
+//--------------  llenado del grid  -------------------
 
         getGrupos("Ciencias de la informática", "5CM81");
-        Grupo grupo = new Grupo();
-        grupo.setId_grupo("fsdfsdfdsds");
-        grupo.setNombre_profesor("fsdfdsf");
-        listaGrupo.add(grupo);
-        GruposAdapter gruposAdapter = new GruposAdapter(this,listaGrupo);
-        grid_grupo.setAdapter(gruposAdapter);
+
 
 /*
         getGrupos("Ciencias de la informática", "5CM81");
@@ -81,6 +95,25 @@ public class BusquedaHorario extends AppCompatActivity {
     }
 
 
+    private void llenadoGrid(Grupo[] grupo){
+        listaGrupo = new ArrayList<>();
+
+        for(int i=0; i< grupo.length;i++){
+            Grupo grupotem = new Grupo();
+
+            grupotem.setId_grupo(grupo[i].getId_grupo());
+            grupotem.setNombre_profesor(grupo[i].getNombre_profesor());
+            grupotem.setId_secuencia(grupo[i].getId_secuencia());
+            grupotem.setApellido_paterno_profesor(grupo[i].getApellido_paterno_profesor());
+            grupotem.setApellido_materno_profesor(grupo[i].getApellido_materno_profesor());
+            grupotem.setNombre_uap(grupo[i].getNombre_uap());
+
+            listaGrupo.add(grupotem);
+        }
+
+        GruposAdapter gruposAdapter = new GruposAdapter(this,listaGrupo);
+        grid_grupo.setAdapter(gruposAdapter);
+    }
     private void mensaje (String mensaje){
         Toast.makeText(this,mensaje,Toast.LENGTH_LONG).show();
     }
@@ -276,6 +309,7 @@ public class BusquedaHorario extends AppCompatActivity {
                         Log.d("--> ", grupo[i].getApellido_materno_profesor());
 
                     }
+                    llenadoGrid(grupo);
                     break;
                 case "FALLIDO": // FALLIDO
                     String mensaje2 = response.getString("mensaje");
