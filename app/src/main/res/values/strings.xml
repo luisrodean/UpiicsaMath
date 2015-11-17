@@ -86,15 +86,15 @@
     <string name="spn_registro_licenciatura">Licenciatura</string>
     <string name="btn_registro_Registrar">Registrar</string>
 
-    <!-- Arreglo Strings "Carreras" related to fragment_registro_alumno
-    <Strinng-array name="Carreras">
-        <iten>Administración Industrial</iten>
-        <iten>Ingeniería Industrial</iten>
-        <iten>Ingenieria en Transporte</iten>
-        <iten>Ciencias de la Informática</iten>
-        <iten>Ingeniería en Informática</iten>
+    <!-- Arreglo Strings "Carreras" related to fragment_registro_alumno-->
+    <Strinng-array name="Carreras">//
+        <item>Administración Industrial</item>
+        <item>Ingeniería Industrial</item>
+        <item>Ingenieria en Transporte</item>
+        <item>Ciencias de la Informática</item>
+        <item>Ingeniería en Informática</item>
     </Strinng-array>
--->
+
 
 
     <!--Catalog fragment-->

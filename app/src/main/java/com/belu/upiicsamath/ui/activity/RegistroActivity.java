@@ -30,7 +30,7 @@ public class RegistroActivity extends Activity {
     private String[] Carreras;
 
     //Creación del Array Adapter
-    ArrayAdapter<String> Adapter;
+    ArrayAdapter Adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,10 @@ public class RegistroActivity extends Activity {
                                 "Ingeniería en Informática"};
         */
         //Instanciar Array Adapter
-        Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Carreras);
+      //  Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Carreras);
+        Adapter = ArrayAdapter.createFromResource(this, R.array.Carreras, android.R.layout.simple_spinner_item);
+        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_Licenciatura.setAdapter(Adapter);
 
         //Obtenemos las referencias a los controles
         //Textos
@@ -76,12 +79,13 @@ public class RegistroActivity extends Activity {
 
         //Acción a Spinner
         spn_Licenciatura.setAdapter(Adapter);
-        spn_Licenciatura.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+     /*   spn_Licenciatura.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Haz seleccionado: " + Carreras[position],Toast.LENGTH_LONG);
             }
         });
+        */
         }
 
 
