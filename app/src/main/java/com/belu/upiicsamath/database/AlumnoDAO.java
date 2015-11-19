@@ -3,6 +3,7 @@ package com.belu.upiicsamath.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.belu.upiicsamath.model.Alumno;
 
@@ -11,21 +12,32 @@ import com.belu.upiicsamath.model.Alumno;
  */
 public class AlumnoDAO {
     //Abrimos la base de datos 'UpiicsaHorario' en modo escritura
-    UpicsaHorarioSQLiteHelper db_horario;
+    private UpicsaHorarioSQLiteHelper db_horario;
+    private SQLiteDatabase db;
+    private Context contexto;
 
     public AlumnoDAO(Context contexto) {
+        this.contexto = contexto;
         db_horario = new UpicsaHorarioSQLiteHelper(contexto, "HorarioUpiicsa", null, 1);
     }
 
-    //Metodo para sobreescribir la base de datos
-    SQLiteDatabase db = db_horario.getWritableDatabase();
-/*
-    //Insertamos los datos en la tabla Usuarios
-    public void Agregar() {
-         String sql = "INSERT INTO Alumno (id_boleta,nombre,apellido_paterno,apellido_materno,licenciatura) VALUES ('" + id_boleta + "' , '" + nombre + "' , '"+ apellido_paterno +"' , '" + apellido_ materno + "', '" +licenciatura + "') ";
-         db.execSQL(sql);
-    }
 
+
+    //Insertamos los datos en la tabla Usuarios
+    public void Agregar(String id_boleta, String nombre , String apellido_paterno, String apellido_materno,  String licenciatura) {
+        try{
+            //Metodo para sobreescribir la base de datos
+            db = db_horario.getWritableDatabase();
+            String sql = "INSERT INTO Alumno (id_boleta,nombre,apellido_paterno,apellido_materno,licenciatura) VALUES (" + id_boleta + " , '" + nombre + "' , '"+ apellido_paterno +"' , '" + apellido_materno + "', '" +licenciatura + "') ";
+            db.execSQL(sql);
+            Toast.makeText(contexto, "Alumno Guardado", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(contexto, "Error al guardar alumno", Toast.LENGTH_SHORT).show();
+        }finally {
+            db.close();
+        }
+    }
+/*
     //Eliminar un registro
     public void Eliminar(){
         db.execSQL("DELETE FROM Usuarios WHERE codigo=6 ");

@@ -45,7 +45,7 @@
     <string name="error_invalid_usuario">El usuario es invalido</string>
     <string name="error_invalid_password">La contraseña es invalida</string>
     <string name="error_incorrect_password">La contraseña es incorrecta</string>
-    <string name="error_field_required">Campo requerio</string>
+    <string name="error_field_required">Campo requerido</string>
 
     <!-- Strings related to fragment_registro_alumno -->
     <string name="txt_registro_id_boleta">Boleta</string>
@@ -69,7 +69,8 @@
     <!--      Array de Spinners     -->
 
     <!-- Arreglo Strings "Carreras" related to fragment_registro_alumno-->
-    <string-array name="Carreras">//
+    <string-array name="Carreras">
+        <item>Seleccione una Licenciatura</item>
         <item>Administración Industrial</item>
         <item>Ingeniería Industrial</item>
         <item>Ingenieria en Transporte</item>

@@ -10,17 +10,15 @@ public class Alumno{
     private String apellido_paterno;
     private String apellido_materno;
     private String licenciatura;
-    private String pass;
 
     public Alumno(){}
 
-    public Alumno(int id_boleta, String nombre, String apellido_paterno, String apellido_materno, String licenciatura, String pass) {
+    public Alumno(int id_boleta, String nombre, String apellido_paterno, String apellido_materno, String licenciatura) {
         this.id_boleta = id_boleta;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
         this.licenciatura = licenciatura;
-        this.pass = pass;
     }
 
 
@@ -64,11 +62,4 @@ public class Alumno{
         this.licenciatura = licenciatura;
     }
 
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
 }

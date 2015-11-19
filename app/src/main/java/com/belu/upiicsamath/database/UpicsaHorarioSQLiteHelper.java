@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class UpicsaHorarioSQLiteHelper extends SQLiteOpenHelper {
 
     //Sentencia SQL para crear la tabla de Alumno
-    String sqlCreate = "CREATE TABLE IF NOT EXISTS Alumno (id_boleta INTEGER, nombre TEXT, apellido_paterno TEXT, apellido_materno TEXT, licencitura TEXT)";
+    String sqlTablaAlumno = "CREATE TABLE IF NOT EXISTS Alumno (id_boleta INTEGER, nombre TEXT, apellido_paterno TEXT, apellido_materno TEXT, licenciatura TEXT)";
 
     public UpicsaHorarioSQLiteHelper(Context contexto, String nombre,
                                 SQLiteDatabase.CursorFactory factory, int version) {
@@ -21,7 +21,7 @@ public class UpicsaHorarioSQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //Se ejecuta la sentencia SQL de creación de la tabla
-        db.execSQL(sqlCreate);
+        db.execSQL(sqlTablaAlumno);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class UpicsaHorarioSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Alumno");
 
         //Se crea la nueva versión de la tabla
-        db.execSQL(sqlCreate);
+        db.execSQL(sqlTablaAlumno);
     }
 }
 

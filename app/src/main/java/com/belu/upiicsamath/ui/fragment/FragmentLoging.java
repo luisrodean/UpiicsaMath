@@ -196,7 +196,6 @@ public class FragmentLoging extends Fragment {
                     Log.d("--> ", alumno.getApellido_paterno());
                     Log.d("--> ", alumno.getApellido_materno());
                     Log.d("--> ", alumno.getLicenciatura());
-                    Log.d("--> ", alumno.getPass());
                     Log.d("--> ", "Inicio sesion correcto  " + alumno.getNombre());
                     getFragmentManager().beginTransaction().replace(R.id.container_login, new Fragment_Login_Bienvenida(alumno)).commit();
 
