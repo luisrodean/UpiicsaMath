@@ -8,15 +8,16 @@ import android.widget.TextView;
 
 import com.belu.upiicsamath.R;
 import com.belu.upiicsamath.model.Horario;
+import com.belu.upiicsamath.model.HorarioAdapter;
 
 import java.util.ArrayList;
 
 
 public class DatosAdapter extends RecyclerView.Adapter<DatosAdapter.datosViewHolder>{
 
-    private ArrayList<Horario> item;
+    private ArrayList<HorarioAdapter> item;
 
-    public DatosAdapter(ArrayList<Horario> item) {
+    public DatosAdapter(ArrayList<HorarioAdapter> item) {
         this.item = item;
     }
 
@@ -29,12 +30,13 @@ public class DatosAdapter extends RecyclerView.Adapter<DatosAdapter.datosViewHol
 
     @Override
     public void onBindViewHolder(datosViewHolder ViewHolder, int i) {
-        ViewHolder.profesor.setText("Sandoval");
-        ViewHolder.uap.setText("Auditoria Informatica");
-        ViewHolder.secuencia.setText("2CM50");
-        ViewHolder.salon.setText("203");
-        ViewHolder.edificio.setText("Ingenieria");
-        ViewHolder.hInicio.setText("15:00");
+        ViewHolder.profesor.setText(item.get(i).getNombre_profesor());
+        ViewHolder.uap.setText(item.get(i).getNombre_uap());
+        ViewHolder.secuencia.setText(item.get(i).getId_secuencia());
+        ViewHolder.salon.setText(item.get(i).getSalon());
+        ViewHolder.edificio.setText(item.get(i).getNombre_edificio());
+        ViewHolder.hInicio.setText(item.get(i).getHora_inicio());
+        ViewHolder.hFin.setText(item.get(i).getHora_fin());
     }
 
     @Override

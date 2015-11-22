@@ -10,6 +10,7 @@ import java.util.Date;
 public class Fecha extends Date{
 
     private int dia;
+    private int diaSemana;
     private int mes;
     private int anio;
     private int hora;
@@ -25,6 +26,35 @@ public class Fecha extends Date{
     }
 
     public int getDia() {
+        return dia;
+    }
+
+    public String getDiaSemana() {
+        String dia = null;
+        switch (diaSemana){
+            case 0:
+                dia = "Domingo";
+            break;
+            case 1:
+                dia = "Lunes";
+            break;
+            case 2:
+                dia = "Martes";
+                break;
+            case 3:
+                dia = "Miércoles";
+                break;
+            case 4:
+                dia = "Jueves";
+                break;
+            case 5:
+                dia = "Viernes";
+                break;
+            case 6:
+                dia = "Sabado";
+                break;
+        }
+
         return dia;
     }
 
@@ -77,6 +107,7 @@ public class Fecha extends Date{
         Time today = new Time(Time.getCurrentTimezone());
         today.setToNow();
         dia = today.monthDay;             // Day of the month (1-31)
+        diaSemana = today.weekDay;
         mes = today.month;              // Month (0-11)
         anio = today.year;                // Year
         hora = today.hour;  // Current time

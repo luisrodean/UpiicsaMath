@@ -1,6 +1,7 @@
 package com.belu.upiicsamath.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -117,7 +118,9 @@ public class RegistroActivity extends Activity {
                     AlumnoDAO aldao = new AlumnoDAO(this);
                     aldao.Agregar(id_boleta,nombre,apellido_paterno,apellido_materno,seleccion);
 
-
+                    //Cambia de actividad y cierra la actual
+                    startActivity(new Intent(this,Principal.class));
+                    this.finish();
                     //EnviarDatos();
                 }
             }

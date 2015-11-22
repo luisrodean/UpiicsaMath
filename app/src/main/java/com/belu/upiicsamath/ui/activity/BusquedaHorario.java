@@ -1,6 +1,9 @@
 package com.belu.upiicsamath.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.belu.upiicsamath.R;
+import com.belu.upiicsamath.database.GrupoDAO;
 import com.belu.upiicsamath.model.Horario;
 import com.belu.upiicsamath.model.Grupo;
 import com.belu.upiicsamath.tool.Constante;
@@ -39,6 +43,14 @@ public class BusquedaHorario extends AppCompatActivity {
     //Creación del Array Adapter
     private ArrayAdapter<CharSequence> Adapter;
     private ArrayList<Grupo> listaGrupo;
+    private Horario[] horario;
+    private int position;
+    private View vista;
+        /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +74,6 @@ public class BusquedaHorario extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String seleccion = parent.getItemAtPosition(position).toString();
-                //Mostramos la selección actual del Spinner
-                Toast.makeText(getApplication().getApplicationContext(), "Haz seleccionado: " + seleccion, Toast.LENGTH_LONG).show();
                 getGrupos(seleccion, "5CM81");
             }
 
@@ -85,18 +95,52 @@ public class BusquedaHorario extends AppCompatActivity {
 
 //--------------  llenado del grid  -------------------
 
-/*
-        getGrupos("Ciencias de la informática", "5CM81");
-       //despues de seleccionar se guarda en BD
-        getAgregarHorario("5CM80-27");
-  */
+        grid_grupo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("--> ", "-------- Dialogo abierto --------" );
+                dialog();
+                setPosition(position);
+                setVista(view);
+            }
+        });
     }
 
+    private void dialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this)
+                .setTitle("Hola")
+                .setMessage("¿Desea guardar este grupo?")
+                .setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Guarda Grupo en BD
+                        getAgregarHorario(listaGrupo.get(position).getId_grupo());
+                        //Cierra dialogo
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
 
-    private void llenadoGrid(Grupo[] grupo){
+        dialog.create();
+
+        dialog.show();
+    }
+
+    private void setVista (View vista){
+        this.vista = vista;
+    }
+
+    private void setPosition (int position){
+        this.position = position;
+    }
+
+    private void llenadoGrid(Grupo[] grupo) {
         listaGrupo = new ArrayList<>();
 
-        for(int i=0; i< grupo.length;i++){
+        for (int i = 0; i < grupo.length; i++) {
             Grupo grupotem = new Grupo();
 
             grupotem.setId_grupo(grupo[i].getId_grupo());
@@ -109,13 +153,10 @@ public class BusquedaHorario extends AppCompatActivity {
             listaGrupo.add(grupotem);
         }
 
-        GruposAdapter gruposAdapter = new GruposAdapter(this,listaGrupo);
+        GruposAdapter gruposAdapter = new GruposAdapter(this, listaGrupo);
         grid_grupo.setAdapter(gruposAdapter);
-    }
-    private void mensaje (String mensaje){
-        Toast.makeText(this,mensaje,Toast.LENGTH_LONG).show();
-    }
 
+    }
 
     /**
      * Guarda los cambios de un alumno.
@@ -123,11 +164,11 @@ public class BusquedaHorario extends AppCompatActivity {
      * Si está en modo inserción, entonces crea una nueva
      * meta en la base de datos
      */
-    private void getGrupos(String licenciaatura, String secuencia) {
+    private void getGrupos(String licenciatura, String secuencia) {
         HashMap<String, String> map = new HashMap<>();
 
         // Mapeo previo donde key = a parametros recibidos en el SW
-        map.put("licenciatura", licenciaatura);
+        map.put("licenciatura", licenciatura);
         map.put("secuencia", secuencia);
 
         // Crear nuevo objeto Json basado en el mapa
@@ -202,7 +243,7 @@ public class BusquedaHorario extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 // Procesar la respuesta del servidor
-                                GurdarHoraioRespuesta(response);
+                                GuardarHorarioRespuesta(response);
                             }
                         },
                         new Response.ErrorListener() {
@@ -236,7 +277,7 @@ public class BusquedaHorario extends AppCompatActivity {
      *
      * @param response Objeto Json con la respuesta
      */
-    private void GurdarHoraioRespuesta(JSONObject response) {
+    private void GuardarHorarioRespuesta(JSONObject response) {
         try {
             Gson gson = new Gson();
             // Obtener atributo "estado"
@@ -247,15 +288,10 @@ public class BusquedaHorario extends AppCompatActivity {
                     // Obtener array "alumno" Json
                     JSONArray mensaje = response.getJSONArray("horario");
                     // Parsear con Gson y guarda en el arreglo de objetos ConsultaHorarios
-                    Horario[] horario = gson.fromJson(mensaje.toString(), Horario[].class);
-                    for(int i=0; i < horario.length;i++) {
-                        //Se imprime en consola los datos del grupo seleccionado
-                        Log.d("--> ", listaGrupo.get(i).getId_grupo());
-                        Log.d("--> ", listaGrupo.get(i).getId_secuencia());
-                        Log.d("--> ", listaGrupo.get(i).getNombre_uap());
-                        Log.d("--> ", listaGrupo.get(i).getNombre_profesor());
-                        Log.d("--> ", listaGrupo.get(i).getApellido_paterno_profesor());
-                        Log.d("--> ", listaGrupo.get(i).getApellido_materno_profesor());
+                    horario = gson.fromJson(mensaje.toString(), Horario[].class);
+                    //Coneccion a BD local
+                    GrupoDAO bd = new GrupoDAO(this);
+                    for (int i = 0; i < horario.length; i++) {
                         //Se imprime en consola los datos recibidos
                         Log.d("--> ", horario[i].getId_dia());
                         Log.d("--> ", horario[i].getHora_inicio());
@@ -264,7 +300,12 @@ public class BusquedaHorario extends AppCompatActivity {
                         Log.d("--> ", horario[i].getSalon());
                         Log.d("--> ", horario[i].getDir_host());
                         Log.d("--> ", horario[i].getPassword());
+                        //Agrega horarion a BD Local
+                        bd.Agregar(listaGrupo.get(position), horario[i]);
                     }
+
+                    Log.d("--> ", " Horario Agregado :D");
+                    Snackbar.make(vista, "Horario Agregado", Snackbar.LENGTH_SHORT).show();
                     break;
                 case "FALLIDO": // FALLIDO
                     String mensaje2 = response.getString("mensaje");
@@ -296,7 +337,7 @@ public class BusquedaHorario extends AppCompatActivity {
                     JSONArray mensaje = response.getJSONArray("grupos");
                     // Parsear con Gson y guarda en el arreglo de objetos ConsultaHorarios
                     Grupo[] grupo = gson.fromJson(mensaje.toString(), Grupo[].class);
-                    for(int i=0; i < grupo.length;i++) {
+                    for (int i = 0; i < grupo.length; i++) {
 
                         //Se imprime en consola los datos recibidos
                         Log.d("--> ", grupo[i].getId_grupo());
