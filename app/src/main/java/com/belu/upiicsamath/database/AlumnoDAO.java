@@ -37,23 +37,23 @@ public class AlumnoDAO {
             db.close();
         }
     }
-/*
+
     //Eliminar un registro
     public void Eliminar(){
-        db.execSQL("DELETE FROM Usuarios WHERE codigo=6 ");
+        db.execSQL("DELETE FROM Alumno WHERE id_boleta=?");
+        db.close();
+    }    /*
         //Alternativa 2: método update()
       	ContentValues valores = new ContentValues();
       	valores.put("nombre", nom);
-      	db.update("Usuarios", valores, "codigo=" + cod, null);
-    }
+      	db.update("Usuarios", valores, "codigo=" + cod, null);*/
+
 
 
     public void Actualizar(){
+        db.execSQL("UPDATE Alumno SET nombre='usunuevo' WHERE codigo=6 ");
+        db.close();
+        }
 
-        db.execSQL("UPDATE Usuarios SET nombre='usunuevo' WHERE codigo=6 ");
-    }
-    //Cerramos la base de datos
-    db.close();
-    */
     }
 

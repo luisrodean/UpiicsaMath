@@ -83,6 +83,7 @@ public class RegistroActivity extends Activity {
             }
         });
 
+
     }
 
     private void onclickRegistrar() {
