@@ -35,8 +35,7 @@ public class DatosAdapter extends RecyclerView.Adapter<DatosAdapter.datosViewHol
         ViewHolder.secuencia.setText(item.get(i).getId_secuencia());
         ViewHolder.salon.setText(item.get(i).getSalon());
         ViewHolder.edificio.setText(item.get(i).getNombre_edificio());
-        ViewHolder.hInicio.setText(item.get(i).getHora_inicio());
-        ViewHolder.hFin.setText(item.get(i).getHora_fin());
+        ViewHolder.hInicio.setText(item.get(i).getHora_inicio() + " - " + item.get(i).getHora_fin());
     }
 
     @Override
