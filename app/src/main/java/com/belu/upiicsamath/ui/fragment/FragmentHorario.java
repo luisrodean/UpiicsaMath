@@ -34,9 +34,6 @@ public class FragmentHorario extends Fragment {
     private FloatingActionButton fab;
     //Se declara objeto datosAdapter de tipo DatosAdapter
     private DatosAdapter datosAdapter;
-    //PostensaAdapterDB postensaAdapterDB;
-    //Realiza busqueda del usuario
-    EditText txtSearch;
 
     //Elemento indispensable en un Fragment
     @Override
@@ -62,7 +59,6 @@ public class FragmentHorario extends Fragment {
         //Se instancia un objeto de tipo ArrayList llamado datos
         GrupoDAO DatosDAO = new GrupoDAO(getActivity().getApplicationContext());
         Fecha fecha = new Fecha();
-//        getActivity().getActionBar().setTitle(fecha.getDiaSemana());
         //ArrayList<HorarioAdapter> datos = DatosDAO.getHorarioPorDia(fecha.getDiaSemana());
         ArrayList<HorarioAdapter> datos = DatosDAO.getHorarioPorDia("Lunes");
         datosAdapter = new DatosAdapter(datos);

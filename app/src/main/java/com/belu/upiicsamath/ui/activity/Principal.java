@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
 
+import com.belu.upiicsamath.tool.Fecha;
 import com.belu.upiicsamath.ui.fragment.FragmentAviso;
 import com.belu.upiicsamath.ui.fragment.FragmentCalendar;
 import com.belu.upiicsamath.ui.fragment.FragmentHorario;
@@ -54,6 +55,7 @@ public class Principal extends AppCompatActivity
         */
         
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(new Fecha().getDiaSemana());
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -64,7 +66,9 @@ public class Principal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
+
 
     @Override
     public void onBackPressed() {

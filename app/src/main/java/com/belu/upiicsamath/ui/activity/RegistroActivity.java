@@ -3,6 +3,7 @@ package com.belu.upiicsamath.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
@@ -57,7 +58,7 @@ public class RegistroActivity extends Activity {
         btn_Registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onclickRegistrar();
+                onclickRegistrar(v);
             }
         });
 
@@ -66,6 +67,7 @@ public class RegistroActivity extends Activity {
         //Asignas el layout a inflar para cada elemento al momento de desplegar la lista
         Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Seteas el adaptador
+        spn_Licenciatura.setBackgroundResource(R.color.white);
         spn_Licenciatura.setAdapter(Adapter);
 
         //Acción a Spinner
@@ -73,9 +75,6 @@ public class RegistroActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 seleccion = parent.getItemAtPosition(position).toString();
-
-                //Mostramos la selección actual del Spinner
-                Toast.makeText(getApplication().getApplicationContext(), "Haz seleccionado: " + seleccion, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -87,7 +86,7 @@ public class RegistroActivity extends Activity {
 
     }
 
-    private void onclickRegistrar() {
+    private void onclickRegistrar(View vista) {
         //Reinicia marca de errores
         txt_Id_Boleta.setError(null);
         txt_Nombre.setError(null);
@@ -106,9 +105,9 @@ public class RegistroActivity extends Activity {
         } else {
             if (seleccion.equals("Seleccione una Licenciatura")) {
                 // Valida que no este vacio, sino que sea valido
-                Toast.makeText(this, "Seleccione una Licenciatura", Toast.LENGTH_SHORT).show();
+                Snackbar.make(vista, "Seleccione una Licenciatura", Snackbar.LENGTH_SHORT).show();
             } else {
-                if (validar.isOnline(this)) {
+                if (validar.isOnline(this, vista)) {
                     //Recuperamos los valores de los campos de texto
                     String id_boleta = txt_Id_Boleta.getText().toString();
                     String nombre = txt_Nombre.getText().toString();

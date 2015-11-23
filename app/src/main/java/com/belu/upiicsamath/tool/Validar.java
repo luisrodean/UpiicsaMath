@@ -3,6 +3,7 @@ package com.belu.upiicsamath.tool;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ public class Validar {
         }
     }
 
-    public boolean isOnline(Context context) {
+    public boolean isOnline(Context context, View vista) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         boolean enabled = true;
@@ -41,7 +42,7 @@ public class Validar {
             enabled = false;
             mensaje = "Sin conexion a internet";
         }
-        Toast.makeText(context,mensaje,Toast.LENGTH_SHORT).show();
+        Snackbar.make(vista, mensaje, Snackbar.LENGTH_SHORT).show();
 
         return enabled;
     }

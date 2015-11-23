@@ -6,7 +6,7 @@
 
     <string name="action_settings">Configuración</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_settings">Configuración</string>
 
@@ -70,7 +70,7 @@
 
     <!-- Arreglo Strings "Carreras" related to fragment_registro_alumno-->
     <string-array name="Carreras">
-        <item>Seleccione una Licenciatura</item>
+        <item></item>
         <item>Administración Industrial</item>
         <item>Ingeniería Industrial</item>
         <item>Ingenieria en Transporte</item>
@@ -109,5 +109,7 @@
         <item>360</item>
         <item>-1</item>
     </string-array>
+    <string name="title_activity_actividad">actividad</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

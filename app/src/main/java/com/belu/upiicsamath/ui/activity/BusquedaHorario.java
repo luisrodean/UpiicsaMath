@@ -22,7 +22,9 @@ import com.belu.upiicsamath.R;
 import com.belu.upiicsamath.database.GrupoDAO;
 import com.belu.upiicsamath.model.Horario;
 import com.belu.upiicsamath.model.Grupo;
+import com.belu.upiicsamath.model.Secuencias;
 import com.belu.upiicsamath.tool.Constante;
+import com.belu.upiicsamath.ui.adapters.AdapterSpinner;
 import com.belu.upiicsamath.ui.adapters.GruposAdapter;
 import com.belu.upiicsamath.web.VolleySingleton;
 import com.google.gson.Gson;
@@ -41,16 +43,11 @@ public class BusquedaHorario extends AppCompatActivity {
     private GridView grid_grupo;
 
     //Creación del Array Adapter
-    private ArrayAdapter<CharSequence> Adapter;
     private ArrayList<Grupo> listaGrupo;
     private Horario[] horario;
     private int position;
     private View vista;
-        /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-
+    private String licenciatura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,22 +56,24 @@ public class BusquedaHorario extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         spLicenciatura = (Spinner) findViewById(R.id.spinner_filtro_lic);
         spSecuencia = (Spinner) findViewById(R.id.spinner_filtro_sec);
         grid_grupo = (GridView) findViewById(R.id.gridView);
 
         //Asignas el origen de datos desde los recursos
-        Adapter = ArrayAdapter.createFromResource(this, R.array.Carreras, android.R.layout.simple_spinner_item);
-        //Asignas el layout a inflar para cada elemento al momento de desplegar la lista
-        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        String[] carreras = {"","Administración Industrial","Ingeniería Industrial","Ingenieria en Transporte","Ciencias de la informática","Ingeniería en Informática"};
+        AdapterSpinner adapterlic = new AdapterSpinner(this, carreras);
 
         //Acción a Spinner
         spLicenciatura.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String seleccion = parent.getItemAtPosition(position).toString();
-                getGrupos(seleccion, "5CM81");
+                licenciatura = parent.getItemAtPosition(position).toString();
+                if (!licenciatura.equals("")) {
+                    DescargarSecuencia();
+                }
             }
 
             @Override
@@ -83,15 +82,8 @@ public class BusquedaHorario extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> adapterSec = new ArrayAdapter<>(
-                getSupportActionBar().getThemedContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                new String[]{"5CM81", "5CM80", "4CM81"});
-
         //Seteas el adaptador
-        spLicenciatura.setAdapter(Adapter);
-        spSecuencia.setAdapter(adapterSec);
-
+        spLicenciatura.setAdapter(adapterlic);
 
 //--------------  llenado del grid  -------------------
 
@@ -158,12 +150,7 @@ public class BusquedaHorario extends AppCompatActivity {
 
     }
 
-    /**
-     * Guarda los cambios de un alumno.
-     * <p/>
-     * Si está en modo inserción, entonces crea una nueva
-     * meta en la base de datos
-     */
+
     private void getGrupos(String licenciatura, String secuencia) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -215,12 +202,7 @@ public class BusquedaHorario extends AppCompatActivity {
 
     }
 
-    /**
-     * Guarda los cambios de un alumno.
-     * <p/>
-     * Si está en modo inserción, entonces crea una nueva
-     * meta en la base de datos
-     */
+
     private void getAgregarHorario(String Grupo) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -271,12 +253,7 @@ public class BusquedaHorario extends AppCompatActivity {
 
     }
 
-    /**
-     * Interpreta los resultados de la respuesta y así
-     * realizar las operaciones correspondientes
-     *
-     * @param response Objeto Json con la respuesta
-     */
+
     private void GuardarHorarioRespuesta(JSONObject response) {
         try {
             Gson gson = new Gson();
@@ -305,11 +282,11 @@ public class BusquedaHorario extends AppCompatActivity {
                     }
 
                     Log.d("--> ", " Horario Agregado :D");
-                    Snackbar.make(vista, "Horario Agregado", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(vista, "Horario Agregado", Snackbar.LENGTH_LONG).show();
                     break;
                 case "FALLIDO": // FALLIDO
                     String mensaje2 = response.getString("mensaje");
-                    Toast.makeText(this, mensaje2, Toast.LENGTH_LONG).show();
+                    Snackbar.make(vista, mensaje2, Snackbar.LENGTH_LONG).show();
                     Log.d("-->", mensaje2);
                     break;
             }
@@ -319,12 +296,7 @@ public class BusquedaHorario extends AppCompatActivity {
         }
     }
 
-    /**
-     * Interpreta los resultados de la respuesta y así
-     * realizar las operaciones correspondientes
-     *
-     * @param response Objeto Json con la respuesta
-     */
+
     private void procesarRespuestaGrupos(JSONObject response) {
         try {
             Gson gson = new Gson();
@@ -352,7 +324,7 @@ public class BusquedaHorario extends AppCompatActivity {
                     break;
                 case "FALLIDO": // FALLIDO
                     String mensaje2 = response.getString("mensaje");
-                    Toast.makeText(this, mensaje2, Toast.LENGTH_LONG).show();
+                    Snackbar.make(vista, mensaje2, Snackbar.LENGTH_LONG).show();
                     Log.d("-->", mensaje2);
                     break;
             }
@@ -362,4 +334,102 @@ public class BusquedaHorario extends AppCompatActivity {
         }
     }
 
+
+    private void DescargarSecuencia() {
+        HashMap<String, String> map = new HashMap<>();
+
+        // Mapeo previo donde key = a parametros recibidos en el SW
+        map.put("licenciatura", licenciatura);
+
+        // Crear nuevo objeto Json basado en el mapa
+        JSONObject jobject = new JSONObject(map);
+
+        // Depurando objeto Json...
+        Log.d("-->objeto JSON creado: ", jobject.toString());
+
+        // Actualizar datos en el servidor
+        VolleySingleton.getInstance(this).addToRequestQueue(
+                new JsonObjectRequest(
+                        Request.Method.POST,
+                        Constante.GET_SECUENCIA_BY_LICENCIATURA,
+                        jobject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // Procesar la respuesta del servidor
+                                procesarRespuestaSecuencias(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("-->Error Volley: ", error.getMessage());
+                            }
+                        }
+
+                ) {
+                    @Override
+                    public Map<String, String> getHeaders() {
+                        Map<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json; charset=utf-8");
+                        headers.put("Accept", "application/json");
+                        return headers;
+                    }
+
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8" + getParamsEncoding();
+                    }
+                }
+        );
+
+    }
+
+    private void procesarRespuestaSecuencias(JSONObject response) {
+        try {
+            Gson gson = new Gson();
+            // Obtener atributo "estado"
+            String estado = response.getString("estado");
+
+            switch (estado) {
+                case "EXITO": // EXITO
+                    // Obtener array "alumno" Json
+                    JSONArray mensaje = response.getJSONArray("secuencia");
+                    // Parsear con Gson y guarda en el arreglo de objetos ConsultaHorarios
+                    Secuencias[] secuencia = gson.fromJson(mensaje.toString(), Secuencias[].class);
+                    String[] sec = new String[secuencia.length];
+                    for (int i = 0; i < secuencia.length; i++) {
+                        //Se imprime en consola los datos recibidos
+                        Log.d("--> ", secuencia[i].getId_secuencia());
+                        sec[i] = secuencia[i].getId_secuencia();
+                    }
+                    llenadoListaSecuencia(sec);
+                    break;
+                case "FALLIDO": // FALLIDO
+                    String mensaje2 = response.getString("mensaje");
+                    Snackbar.make(vista, mensaje2, Snackbar.LENGTH_LONG).show();
+                    Log.d("-->", mensaje2);
+                    break;
+            }
+
+        } catch (JSONException e) {
+            Log.d("-->", e.getMessage());
+        }
+    }
+
+    private void llenadoListaSecuencia(String[] secuencia) {
+        AdapterSpinner adapterSec = new AdapterSpinner(this,secuencia);
+        spSecuencia.setAdapter(adapterSec);
+        spSecuencia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getGrupos(licenciatura, parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
 }
